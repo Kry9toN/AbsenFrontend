@@ -1,0 +1,2 @@
+rootProject.name = "AbsenMobile"
+include ':app'
