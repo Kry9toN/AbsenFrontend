@@ -1,6 +1,9 @@
 package krypton.absenmobile;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import krypton.absenmobile.api.Client;
 import krypton.absenmobile.api.model.LoginData;
+import krypton.absenmobile.api.model.UserDetails;
 import krypton.absenmobile.api.service.Interface;
 import krypton.absenmobile.api.model.Login;
 import krypton.absenmobile.storage.Preferences;
@@ -57,20 +61,50 @@ public class LoginActivity extends Activity {
             @Override
             public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                 if (response.isSuccessful()) {
-                    Preferences.setToken(LoginActivity.this, response.body().getToken());
+                    final String token = response.body().getToken();
+                    Preferences.setToken(LoginActivity.this, token);
 
                     // TODO: membuat aktifitas mengambil data status user
                     Intent siswa = new Intent(LoginActivity.this, SiswaMainActivity.class);
                     startActivity(siswa);
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Password salah", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage(R.string.pw_salah)
+                            .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginData> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setMessage(R.string.no_inet)
+                        .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        }).show();
+            }
+        });
+    }
+
+    private void getDetailUser(String token) {
+        Call<UserDetails> call = mInterface.getData(token);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+
             }
         });
     }

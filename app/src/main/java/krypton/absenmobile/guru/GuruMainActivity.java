@@ -1,4 +1,4 @@
-package krypton.absenmobile.siswa;
+package krypton.absenmobile.guru;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,20 +18,20 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import krypton.absenmobile.R;
-import krypton.absenmobile.databinding.ActivitySiswaBinding;
+import krypton.absenmobile.databinding.ActivityGuruBinding;
 
-public class SiswaMainActivity extends AppCompatActivity {
+public class GuruMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivitySiswaBinding binding;
+    private ActivityGuruBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySiswaBinding.inflate(getLayoutInflater());
+        binding = ActivityGuruBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarSiswa.toolbar);
+        setSupportActionBar(binding.appBarGuru.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
