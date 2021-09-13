@@ -1,7 +1,5 @@
 package krypton.absenmobile.api.model;
 
-import java.lang.reflect.Array;
-
 public class UserDetails {
     private String name;
     private String username;

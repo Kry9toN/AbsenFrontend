@@ -2,28 +2,25 @@ package krypton.absenmobile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import krypton.absenmobile.api.Client;
+import krypton.absenmobile.api.model.Login;
 import krypton.absenmobile.api.model.LoginData;
 import krypton.absenmobile.api.model.UserDetails;
 import krypton.absenmobile.api.service.Interface;
-import krypton.absenmobile.api.model.Login;
+import krypton.absenmobile.siswa.SiswaMainActivity;
 import krypton.absenmobile.storage.Preferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import krypton.absenmobile.siswa.SiswaMainActivity;
 
 public class LoginActivity extends Activity {
 
