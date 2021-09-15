@@ -6,6 +6,9 @@ import android.preference.PreferenceManager;
 
 public class Preferences {
     static final String TOKEN = "token";
+    static final String USERNAME = "username";
+    static final String GURU = "guru";
+    static final String ADMIN = "admin";
     static final String IS_LOGIN = "is_login";
     static final String LONGITUDE = "longitude";
     static final String LATITUDE = "latitude";
@@ -35,7 +38,7 @@ public class Preferences {
     }
 
     // Longitude
-    public static void seLongitude(Context context, int longitude) {
+    public static void setLongitude(Context context, int longitude) {
         SharedPreferences.Editor editor = getSharedPreference(context).edit();
         editor.putInt(LONGITUDE, longitude);
         editor.apply();
@@ -52,5 +55,35 @@ public class Preferences {
     }
     public static int getLatitude(Context context) {
         return getSharedPreference(context).getInt(LATITUDE, 0);
+    }
+
+    // Username
+    public static void setUsername(Context context, String username) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putString(USERNAME, username);
+        editor.apply();
+    }
+    public static String getUsername(Context context) {
+        return getSharedPreference(context).getString(USERNAME, "");
+    }
+
+    // Guru
+    public static void setGuru(Context context, Boolean isGuru) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(GURU, isGuru);
+        editor.apply();
+    }
+    public static Boolean getGuru(Context context) {
+        return getSharedPreference(context).getBoolean(GURU, false);
+    }
+
+    // Admin
+    public static void setAdmin(Context context, Boolean isAdmin) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(ADMIN, isAdmin);
+        editor.apply();
+    }
+    public static Boolean getAdmin(Context context) {
+        return getSharedPreference(context).getBoolean(ADMIN, false);
     }
 }

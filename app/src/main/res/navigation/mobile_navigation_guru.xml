@@ -9,5 +9,5 @@
         android:id="@+id/nav_dashboard"
         android:name="krypton.absenmobile.guru.view.Dashboard"
         android:label="@string/menu_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard_guru" />
 </navigation>

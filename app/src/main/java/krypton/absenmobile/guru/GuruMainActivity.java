@@ -34,14 +34,14 @@ public class GuruMainActivity extends AppCompatActivity {
                 R.id.nav_dashboard)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_siswa);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_guru);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_siswa);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_guru);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }

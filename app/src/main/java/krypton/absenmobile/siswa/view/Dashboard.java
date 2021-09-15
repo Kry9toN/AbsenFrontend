@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import krypton.absenmobile.databinding.FragmentDashboardBinding;
+import krypton.absenmobile.databinding.FragmentDashboardSiswaBinding;
 
 public class Dashboard extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentDashboardSiswaBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentDashboardSiswaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;

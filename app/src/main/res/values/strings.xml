@@ -17,4 +17,5 @@
 
     <string name="nav_open">Navbar open</string>
     <string name="nav_close">Navbar close</string>
+    <string name="error_server_side">Mohon maaf server saat ini sedang error mohon coba beberapa saat lagi</string>
 </resources>

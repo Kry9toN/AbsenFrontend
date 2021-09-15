@@ -16,6 +16,10 @@
             android:name=".siswa.SiswaMainActivity"
             android:label="@string/title_activity_siswa"
             android:theme="@style/Theme.AbsenMobile.NoActionBar" />
+        <activity
+            android:name=".guru.GuruMainActivity"
+            android:label="@string/title_activity_siswa"
+            android:theme="@style/Theme.AbsenMobile.NoActionBar" />
         <activity android:name=".SplashScreeen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
