@@ -8,6 +8,7 @@ import android.os.Handler;
 import krypton.absenmobile.guru.GuruMainActivity;
 import krypton.absenmobile.siswa.SiswaMainActivity;
 import krypton.absenmobile.storage.Preferences;
+import krypton.absenmobile.util.Permission;
 
 public class SplashScreeen extends Activity {
 
@@ -35,6 +36,6 @@ public class SplashScreeen extends Activity {
                     }
                 }
             }
-        }, 4000);
+        }, 3000);
     }
 }

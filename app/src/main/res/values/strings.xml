@@ -18,4 +18,10 @@
     <string name="nav_open">Navbar open</string>
     <string name="nav_close">Navbar close</string>
     <string name="error_server_side">Mohon maaf server saat ini sedang error mohon coba beberapa saat lagi</string>
+    <string name="text_header">Selamat datang di Absen Mobile</string>
+    <string name="text_summary_header">Silakan isi data login yang sudah di berikan</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="ini_jam">Ini Jam......</string>
 </resources>

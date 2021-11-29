@@ -20,6 +20,7 @@ import krypton.absenmobile.api.service.Interface;
 import krypton.absenmobile.guru.GuruMainActivity;
 import krypton.absenmobile.siswa.SiswaMainActivity;
 import krypton.absenmobile.storage.Preferences;
+import krypton.absenmobile.util.Permission;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -43,6 +44,9 @@ public class LoginActivity extends Activity {
 
         mInterface = Client.getClient().create(Interface.class);
 
+        // First check permission
+        Permission.checkAll(this);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,41 +60,47 @@ public class LoginActivity extends Activity {
     }
 
     private void login(String username, String password) {
-        Login login = new Login(username, password);
-        Call<LoginData> call = mInterface.login(login);
-        call.enqueue(new Callback<LoginData>() {
-            @Override
-            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
-                if (response.isSuccessful()) {
-                    // Menyimpan semua data user
-                    final String token = "Token " + response.body().getToken();
-                    Preferences.setToken(LoginActivity.this, token);
-                    Preferences.setUsername(LoginActivity.this, username);
-                    getDetailUser(token, username);
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage(R.string.pw_salah)
-                            .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            }).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<LoginData> call, Throwable t) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setMessage(R.string.no_inet)
-                        .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        }).show();
-            }
-        });
+        Intent siswa = new Intent(LoginActivity.this, SiswaMainActivity.class);
+        Preferences.setUserLogin(LoginActivity.this, true);
+        startActivity(siswa);
+        finish();
+
+//        Login login = new Login(username, password);
+//        Call<LoginData> call = mInterface.login(login);
+//        call.enqueue(new Callback<LoginData>() {
+//            @Override
+//            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+//                if (response.isSuccessful()) {
+//                    // Menyimpan semua data user
+//                    final String token = "Token " + response.body().getToken();
+//                    Preferences.setToken(LoginActivity.this, token);
+//                    Preferences.setUsername(LoginActivity.this, username);
+//                    getDetailUser(token, username);
+//                } else {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//                    builder.setMessage(R.string.pw_salah)
+//                            .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                }
+//                            }).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginData> call, Throwable t) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//                builder.setMessage(R.string.no_inet)
+//                        .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                dialogInterface.dismiss();
+//                            }
+//                        }).show();
+//            }
+//        });
     }
 
     private void getDetailUser(String token, String username) {
@@ -106,7 +116,7 @@ public class LoginActivity extends Activity {
                     Preferences.setAdmin(LoginActivity.this, response.body().getIsSuperuser());
                     Preferences.setLatitude(LoginActivity.this, response.body().getLatitude());
                     Preferences.setLongitude(LoginActivity.this, response.body().getLongitude());
-                    
+
                     if (Preferences.getGuru(LoginActivity.this)) {
                         Intent guru = new Intent(LoginActivity.this, GuruMainActivity.class);
                         Preferences.setUserLogin(LoginActivity.this, true);
