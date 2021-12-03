@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -29,9 +28,9 @@ import retrofit2.Response;
 
 public class LoginActivity extends Activity {
 
-    Button btnLogin;
-    EditText inputLogin, inputPass;
-    Interface mInterface;
+    private Button btnLogin;
+    private EditText inputLogin, inputPass;
+    private Interface mInterface;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,47 +59,40 @@ public class LoginActivity extends Activity {
     }
 
     private void login(String username, String password) {
+        Login login = new Login(username, password);
+        Call<LoginData> call = mInterface.login(login);
+        call.enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+                if (response.isSuccessful()) {
+                    // Menyimpan semua data user
+                    final String token = "Token " + response.body().getToken();
+                    Preferences.setToken(LoginActivity.this, token);
+                    getDetailUser(token, username);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage(R.string.pw_salah)
+                            .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).show();
+                }
+            }
 
-        Intent siswa = new Intent(LoginActivity.this, SiswaMainActivity.class);
-        Preferences.setUserLogin(LoginActivity.this, true);
-        startActivity(siswa);
-        finish();
-
-//        Login login = new Login(username, password);
-//        Call<LoginData> call = mInterface.login(login);
-//        call.enqueue(new Callback<LoginData>() {
-//            @Override
-//            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
-//                if (response.isSuccessful()) {
-//                    // Menyimpan semua data user
-//                    final String token = "Token " + response.body().getToken();
-//                    Preferences.setToken(LoginActivity.this, token);
-//                    Preferences.setUsername(LoginActivity.this, username);
-//                    getDetailUser(token, username);
-//                } else {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-//                    builder.setMessage(R.string.pw_salah)
-//                            .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialogInterface, int i) {
-//                                    dialogInterface.dismiss();
-//                                }
-//                            }).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginData> call, Throwable t) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-//                builder.setMessage(R.string.no_inet)
-//                        .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                dialogInterface.dismiss();
-//                            }
-//                        }).show();
-//            }
-//        });
+            @Override
+            public void onFailure(Call<LoginData> call, Throwable t) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setMessage(R.string.no_inet)
+                        .setNegativeButton(R.string.oke, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        }).show();
+            }
+        });
     }
 
     private void getDetailUser(String token, String username) {
@@ -116,6 +108,8 @@ public class LoginActivity extends Activity {
                     Preferences.setAdmin(LoginActivity.this, response.body().getIsSuperuser());
                     Preferences.setLatitude(LoginActivity.this, response.body().getLatitude());
                     Preferences.setLongitude(LoginActivity.this, response.body().getLongitude());
+                    Preferences.setUsername(LoginActivity.this, response.body().getUsername());
+                    Preferences.setName(LoginActivity.this, response.body().getName());
 
                     if (Preferences.getGuru(LoginActivity.this)) {
                         Intent guru = new Intent(LoginActivity.this, GuruMainActivity.class);

@@ -1,4 +1,4 @@
-package krypton.absenmobile.util;
+package krypton.absenmobile.util.background;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -14,16 +14,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import krypton.absenmobile.R;
-import krypton.absenmobile.siswa.SiswaMainActivity;
-
-public class Time extends AsyncTask<Void, String, String> {
+public class TimeCheck extends AsyncTask<Void, String, String> {
 
     private Context context;
     private TextView t;
     private String hasil;
 
-    public Time (Context context, TextView t) {
+    public TimeCheck(Context context, TextView t) {
         this.context = context;
         this.t = t;
     }

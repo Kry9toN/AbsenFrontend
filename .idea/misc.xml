@@ -15,8 +15,12 @@
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/drawable/ic_round_account_circle.xml" value="0.284375" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/drawable/input_style.xml" value="0.309375" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/content_guru.xml" value="0.29322916666666665" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/content_siswa.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_dashboard_guru.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_dashboard_siswa.xml" value="0.266304347826087" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/menu/activity_guru_drawer.xml" value="0.29322916666666665" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/menu/activity_siswa_drawer.xml" value="0.29322916666666665" />
       </map>
     </option>
   </component>

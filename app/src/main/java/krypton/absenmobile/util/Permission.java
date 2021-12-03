@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
-import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -44,7 +43,7 @@ public class Permission {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                        Toast.makeText(context, "Permission Diberikan", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Permission Diberikan", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -68,7 +67,7 @@ public class Permission {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                        Toast.makeText(context, "Permission Diberikan", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Permission Diberikan", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

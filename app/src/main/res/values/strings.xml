@@ -24,4 +24,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="ini_jam">Ini Jam......</string>
+
+    <string name="berhasil_absen">Berhasil absen</string>
+    <string name="jarak_saat_absen">Kamu berada lebih dari 500 meter dari tempat PKL mu, mohon untuk berada di area 500 meter dari PKl dan coba lagi.</string>
+    <string name="toast_root_detected">Terdeteksi Root.</string>
+    <string name="dialog_root_detected">Root terdeteksi, mohon untuk uninstall root dan coba lagi.</string>
 </resources>

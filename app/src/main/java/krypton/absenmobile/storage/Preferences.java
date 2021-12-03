@@ -7,11 +7,14 @@ import android.preference.PreferenceManager;
 public class Preferences {
     static final String TOKEN = "token";
     static final String USERNAME = "username";
+    static final String NAME = "name";
     static final String GURU = "guru";
     static final String ADMIN = "admin";
     static final String IS_LOGIN = "is_login";
-    static final String LONGITUDE = "longitude";
     static final String LATITUDE = "latitude";
+    static final String LONGITUDE = "longitude";
+    static final String CURENT_LATITUDE = "curent_latitude";
+    static final String CURENT_LONGITUDE = "curent_longitude";
 
     private static SharedPreferences getSharedPreference(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
@@ -20,7 +23,7 @@ public class Preferences {
     // Token
     public static void setToken(Context context, String token) {
         SharedPreferences.Editor editor = getSharedPreference(context).edit();
-        editor.putString(TOKEN, "Token " + token);
+        editor.putString(TOKEN, token);
         editor.apply();
     }
     public static String getToken(Context context) {
@@ -38,23 +41,43 @@ public class Preferences {
     }
 
     // Longitude
-    public static void setLongitude(Context context, int longitude) {
+    public static void setLongitude(Context context, Float longitude) {
         SharedPreferences.Editor editor = getSharedPreference(context).edit();
-        editor.putInt(LONGITUDE, longitude);
+        editor.putFloat(LONGITUDE, longitude);
         editor.apply();
     }
-    public static int getLongitude(Context context) {
-        return getSharedPreference(context).getInt(LONGITUDE, 0);
+    public static Float getLongitude(Context context) {
+        return getSharedPreference(context).getFloat(LONGITUDE, 0);
     }
 
     // Latitude
-    public static void setLatitude(Context context, int latitude) {
+    public static void setLatitude(Context context, Float latitude) {
         SharedPreferences.Editor editor = getSharedPreference(context).edit();
-        editor.putInt(LATITUDE, latitude);
+        editor.putFloat(LATITUDE, latitude);
         editor.apply();
     }
-    public static int getLatitude(Context context) {
-        return getSharedPreference(context).getInt(LATITUDE, 0);
+    public static Float getLatitude(Context context) {
+        return getSharedPreference(context).getFloat(LATITUDE, 0);
+    }
+
+    // Curent Longitude
+    public static void setCurentLongitude(Context context, Float curentLongitude) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putFloat(CURENT_LONGITUDE, curentLongitude);
+        editor.apply();
+    }
+    public static Float getCurentLongitude(Context context) {
+        return getSharedPreference(context).getFloat(CURENT_LONGITUDE, 0);
+    }
+
+    // Curent Latitude
+    public static void setCurentLatitude(Context context, Float CurentLatitude) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putFloat(CURENT_LATITUDE, CurentLatitude);
+        editor.apply();
+    }
+    public static Float getCurentLatitude(Context context) {
+        return getSharedPreference(context).getFloat(CURENT_LATITUDE, 0);
     }
 
     // Username
@@ -65,6 +88,16 @@ public class Preferences {
     }
     public static String getUsername(Context context) {
         return getSharedPreference(context).getString(USERNAME, "");
+    }
+
+    // Name
+    public static void setName(Context context, String name) {
+        SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putString(NAME, name);
+        editor.apply();
+    }
+    public static String getName(Context context) {
+        return getSharedPreference(context).getString(NAME, "");
     }
 
     // Guru

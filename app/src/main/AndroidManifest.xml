@@ -43,6 +43,12 @@
         <uses-library android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <service
+            android:name="krypton.absenmobile.util.security.IsolatedService"
+            android:enabled="true"
+            android:isolatedProcess="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

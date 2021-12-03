@@ -14,8 +14,8 @@ public class UserDetails {
     private Boolean is_staff;
     private Boolean is_admin;
     private Boolean is_superuser;
-    private Integer longitude;
-    private Integer latitude;
+    private Float longitude;
+    private Float latitude;
     private List<Object> absen = null;
 
     public String getPassword() {
@@ -98,19 +98,19 @@ public class UserDetails {
         this.is_superuser = isSuperuser;
     }
 
-    public Integer getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
-    public Integer getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
