@@ -19,7 +19,8 @@ import krypton.absenmobile.api.service.Interface;
 import krypton.absenmobile.guru.GuruMainActivity;
 import krypton.absenmobile.siswa.SiswaMainActivity;
 import krypton.absenmobile.storage.Preferences;
-import krypton.absenmobile.util.Permission;
+import krypton.absenmobile.util.loading.LoadingAnimation;
+import krypton.absenmobile.util.security.Permission;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -31,17 +32,19 @@ public class LoginActivity extends Activity {
     private Button btnLogin;
     private EditText inputLogin, inputPass;
     private Interface mInterface;
+    private LoadingAnimation loadingAnimation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        inputLogin = (EditText) findViewById(R.id.username);
-        inputPass = (EditText) findViewById(R.id.password);
+        loadingAnimation = new LoadingAnimation(this);
 
         mInterface = Client.getClient().create(Interface.class);
+
+        btnLogin = findViewById(R.id.btn_login);
+        inputLogin = findViewById(R.id.username);
+        inputPass = findViewById(R.id.password);
 
         // First check permission
         Permission.checkAll(this);
@@ -49,6 +52,7 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingAnimation.startLoadingDialog();
                 String username, password;
                 username = inputLogin.getText().toString();
                 password = inputPass.getText().toString();
@@ -78,6 +82,7 @@ public class LoginActivity extends Activity {
                                     dialogInterface.dismiss();
                                 }
                             }).show();
+                    loadingAnimation.dismisDialog();
                 }
             }
 
@@ -91,6 +96,7 @@ public class LoginActivity extends Activity {
                                 dialogInterface.dismiss();
                             }
                         }).show();
+                loadingAnimation.dismisDialog();
             }
         });
     }
@@ -115,11 +121,13 @@ public class LoginActivity extends Activity {
                         Intent guru = new Intent(LoginActivity.this, GuruMainActivity.class);
                         Preferences.setUserLogin(LoginActivity.this, true);
                         startActivity(guru);
+                        loadingAnimation.dismisDialog();
                         finish();
                     } else if (!Preferences.getGuru(LoginActivity.this)) {
                         Intent siswa = new Intent(LoginActivity.this, SiswaMainActivity.class);
                         Preferences.setUserLogin(LoginActivity.this, true);
                         startActivity(siswa);
+                        loadingAnimation.dismisDialog();
                         finish();
                     }
                 } else {
@@ -131,12 +139,13 @@ public class LoginActivity extends Activity {
                                     dialogInterface.dismiss();
                                 }
                             }).show();
+                    loadingAnimation.dismisDialog();
                 }
             }
 
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
-
+                loadingAnimation.dismisDialog();
             }
         });
     }

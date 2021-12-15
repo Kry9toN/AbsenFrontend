@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/development_category"/>
+
+    <Preference
+        android:title="@string/krypton"
+        android:icon="@drawable/ic_round_code"
+        android:summary="@string/krypton_role">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/kry9ton/"/>
+    </Preference>
+
+    <PreferenceCategory
+        android:title="@string/app_info_category"/>
+    <Preference
+        android:key="version_app"
+        android:title="@string/app_version_title" />
+
+</PreferenceScreen>

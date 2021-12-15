@@ -23,10 +23,20 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="ini_jam">Ini Jam......</string>
 
     <string name="berhasil_absen">Berhasil absen</string>
     <string name="jarak_saat_absen">Kamu berada lebih dari 500 meter dari tempat PKL mu, mohon untuk berada di area 500 meter dari PKl dan coba lagi.</string>
     <string name="toast_root_detected">Terdeteksi Root.</string>
     <string name="dialog_root_detected">Root terdeteksi, mohon untuk uninstall root dan coba lagi.</string>
+
+    <!-- About -->
+    <string name="menu_about">Info</string>
+    <string name="development_category">Developer</string>
+    <string name="krypton_role">Back End &amp; Front End</string>
+    <string name="krypton">KryPtoN</string>
+    <string name="app_info_category">App Info</string>
+    <string name="app_version_title">Version App</string>
+    <string name="jam_default_value">00:00</string>
+    <string name="nama_default_value">Nama</string>
+    <string name="jam_saat_absen">Tolong asbsen sesuai jadwal yang tertertera!</string>
 </resources>

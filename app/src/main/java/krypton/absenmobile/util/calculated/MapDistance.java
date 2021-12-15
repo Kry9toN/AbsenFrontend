@@ -1,4 +1,4 @@
-package krypton.absenmobile.util;
+package krypton.absenmobile.util.calculated;
 
 public class MapDistance {
 

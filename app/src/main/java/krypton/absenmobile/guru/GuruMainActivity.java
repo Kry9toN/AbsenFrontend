@@ -22,19 +22,21 @@ public class GuruMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_guru);
+
         binding = ActivityGuruBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarGuru.toolbar);
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        setSupportActionBar(binding.appBarGuru.toolbarGuru);
+        DrawerLayout drawer = binding.drawerLayoutGuru;
+        NavigationView navigationView = binding.navViewGuru;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_dashboard)
+                R.id.nav_dashboard_guru)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_guru);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_siswa);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }

@@ -1,4 +1,4 @@
-package krypton.absenmobile.util;
+package krypton.absenmobile.util.security;
 
 import android.Manifest;
 import android.content.Context;

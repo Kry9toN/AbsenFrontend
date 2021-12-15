@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_dashboard">
+    android:id="@+id/mobile_navigation_guru"
+    app:startDestination="@+id/nav_dashboard_guru">
 
     <fragment
-        android:id="@+id/nav_dashboard"
-        android:name="krypton.absenmobile.guru.view.Dashboard"
+        android:id="@+id/nav_dashboard_guru"
+        android:name="krypton.absenmobile.guru.dashboard.DashboardGuru"
         android:label="@string/menu_dashboard"
         tools:layout="@layout/fragment_dashboard_guru" />
 </navigation>

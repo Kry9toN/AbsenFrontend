@@ -22,4 +22,9 @@
     <style name="Button.Red" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_red</item>
     </style>
+
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_theme_activity"
-    tools:context=".siswa.view.Dashboard">
+    tools:context=".siswa.SiswaMainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,8 +24,6 @@
 
         <View
             android:id="@+id/body_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:layout_marginStart="15dp"
@@ -33,6 +31,9 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/bg_dashboard"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -63,22 +64,42 @@
             android:layout_marginBottom="38dp"
             android:layout_marginStart="10dp"
             android:textSize="29sp"
-            android:text="@string/ini_jam"
+            android:text="@string/nama_default_value"
             android:textColor="@color/backgroundActivity"
             app:layout_constraintBottom_toTopOf="@id/divider_dashboard"
             app:layout_constraintStart_toStartOf="@id/divider_dashboard" />
 
         <TextView
-            android:id="@+id/jam_dashboard"
+            android:id="@+id/jam_datang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:textSize="29sp"
-            android:text="@string/ini_jam"
+            android:text="@string/jam_default_value"
             android:textColor="@color/backgroundActivity"
             app:layout_constraintTop_toBottomOf="@id/divider_dashboard"
             app:layout_constraintStart_toEndOf="@id/ic_jam" />
+
+        <View
+            android:id="@+id/divider_jam"
+            android:layout_width="165dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="@+id/ic_jam"
+            app:layout_constraintTop_toBottomOf="@+id/jam_datang" />
+
+        <TextView
+            android:id="@+id/jam_pulang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jam_default_value"
+            android:textColor="@color/backgroundActivity"
+            android:textSize="29sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/ic_jam"
+            app:layout_constraintTop_toBottomOf="@+id/jam_datang" />
 
         <Button
             android:id="@+id/datang"

@@ -17,7 +17,7 @@ import krypton.absenmobile.IIsolatedService;
 public class IsolatedService extends Service {
 
     private static final String[] blackListedMountPaths = { "magisk", "core/mirror", "core/img"};
-    private static final String TAG = "DetectMagisk-Isolated";
+    private static final String TAG = "IsolatedServ-Magisk";
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
@@ -63,8 +63,6 @@ public class IsolatedService extends Service {
                     isMagiskPresent = nativeRoot.isMagiskPresentNative();
                     Log.d(TAG, "Found Magisk in Native " + isMagiskPresent);
                 }
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
