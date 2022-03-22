@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "917191384150",
+    "project_id": "absen-mobile-9b588",
+    "storage_bucket": "absen-mobile-9b588.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917191384150:android:cf048aee105ae01c2daff7",
+        "android_client_info": {
+          "package_name": "krypton.absenmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917191384150-lavc36364oacak57l4dpube3j4c5q9bf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlu8vjKQDuikBIJ9IpOZDSFH5gx0m3JLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917191384150-lavc36364oacak57l4dpube3j4c5q9bf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
