@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AbsenMobile</string>
-    <string name="title_activity_siswa">siswa</string>
+    <string name="title_activity_siswa">Siswa</string>
+    <string name="title_activity_guru">Guru</string>
+    <string name="title_activity_siswa_foto">Siswa Foto</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_summary">App nice and Good</string>
@@ -28,9 +30,10 @@
     <string name="jarak_saat_absen">Kamu berada lebih dari 500 meter dari tempat PKL mu, mohon untuk berada di area 500 meter dari PKl dan coba lagi.</string>
     <string name="toast_root_detected">Terdeteksi Root.</string>
     <string name="dialog_root_detected">Root terdeteksi, mohon untuk uninstall root dan coba lagi.</string>
+    <string name="gangguan_jaringan">Coba cek jaringan internet anda dan coba lagi.</string>
 
     <!-- About -->
-    <string name="menu_about">Info</string>
+    <string name="menu_about">Info apps</string>
     <string name="development_category">Developer</string>
     <string name="krypton_role">Back End &amp; Front End</string>
     <string name="krypton">KryPtoN</string>
@@ -39,4 +42,8 @@
     <string name="jam_default_value">00:00</string>
     <string name="nama_default_value">Nama</string>
     <string name="jam_saat_absen">Tolong asbsen sesuai jadwal yang tertertera!</string>
+    <string name="curent_location">Lokasi saat ini</string>
+
+    <string name="dialog_header_foto_datang">Silakan Upload\nBukti Datang!</string>
+    <string name="dialog_header_foto_pulang">Silakan Upload\nBukti Pulang!</string>
 </resources>

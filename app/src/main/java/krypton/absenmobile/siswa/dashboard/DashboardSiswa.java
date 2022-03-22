@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -43,11 +46,10 @@ import krypton.absenmobile.api.Client;
 import krypton.absenmobile.api.model.UserDetails;
 import krypton.absenmobile.api.service.Interface;
 import krypton.absenmobile.databinding.FragmentDashboardSiswaBinding;
+import krypton.absenmobile.siswa.foto.FotoSiswa;
 import krypton.absenmobile.storage.Preferences;
-import krypton.absenmobile.util.calculated.MapDistance;
-import krypton.absenmobile.util.loading.LoadingAnimation;
+import krypton.absenmobile.util.FunctionUtils;
 import krypton.absenmobile.util.security.Permission;
-import krypton.absenmobile.util.time.TimeCheck;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -57,9 +59,10 @@ import retrofit2.Response;
 public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
 
     private static String TAG = "SiswaActivity";
+    private static String clock;
 
-    public double Latitude;
-    public double Longitude;
+    private double Latitude;
+    private double Longitude;
 
     private FragmentDashboardSiswaBinding binding;
     private MapView mapView;
@@ -70,7 +73,6 @@ public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
     private TextView textViewJamPulang;
     private TextView textViewNama;
     private FirebaseRemoteConfig remoteConfig;
-    private LoadingAnimation loadingAnimation;
     private Button btn1;
     private Button btn2;
 
@@ -84,6 +86,7 @@ public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
     private String jam_pulang_mulai;
     private String jam_pulang_akhir;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -93,6 +96,7 @@ public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
         Permission.checkLocation(getContext());
         Permission.checkPhoneState(getContext());
 
+        // Initial Interface API
         mInterface = Client.getClient().create(Interface.class);
 
         // Fetch Config time
@@ -138,83 +142,32 @@ public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
 
         // Set nama
         textViewNama = root.findViewById(R.id.text_nama);
-        textViewNama.setText(Preferences.getName(getContext()));
+        if (Preferences.getName(getContext()).length() <= 17) {
+            textViewNama.setText(Preferences.getName(getContext()));
+        }
+
+        if (Preferences.getName(getContext()).length() >= 17) {
+            textViewNama.setText(Preferences.getName(getContext()).substring(0, 17));
+        }
 
         btn1 = root.findViewById(R.id.datang);
+        btn2 = root.findViewById(R.id.pulang);
+
         btn1.setOnClickListener(v -> {
-            // Sync location
-            updateLocation();
-            // Take now time
-            String nowTime = TimeCheck.time();
 
-            Log.d(TAG, nowTime);
+            btn1.setBackgroundResource(R.drawable.btn_style_active);
+            btn2.setBackgroundResource(R.drawable.btn_style_inactive);
 
-            // Calculated distance
-            double hasil = MapDistance.Calculated(
-                    Preferences.getLatitude(getContext()),
-                    Preferences.getCurentLatitude(getContext()),
-                    Preferences.getLongitude(getContext()),
-                    Preferences.getCurentLongitude(getContext()));
-
-            // if the distance exceeds 501.0, 501.0 is offset distance
-            if (hasil <= 501.0) {
-                if (timeAfterBeforeCheck(jam_datang_mulai, jam_datang_akhir, nowTime)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.berhasil_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                    btn1.setCompoundDrawables(null, null, null, null);
-                }
-            }
-            if (hasil >= 501.0) {
-                if (!timeAfterBeforeCheck(jam_datang_mulai, jam_datang_akhir, nowTime)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.jam_saat_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                    btn1.setCompoundDrawables(null, null, null, null);
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.jarak_saat_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                    btn1.setCompoundDrawables(null, null, null, null);
-                }
-            }
+            Toast.makeText(getContext(), "Mohon tunggu sebentar....",  Toast.LENGTH_LONG).show();
+            checkinfForAbsen(FotoSiswa.class, "datang");
         });
 
-        btn2 = root.findViewById(R.id.pulang);
         btn2.setOnClickListener(v -> {
-            // Sync location
-            updateLocation();
-            // Take now time
-            String nowTime = TimeCheck.time();
+            btn1.setBackgroundResource(R.drawable.btn_style_inactive);
+            btn2.setBackgroundResource(R.drawable.btn_style_active);
 
-            Log.d(TAG, nowTime);
-
-            // Calculated distance
-            double hasil = MapDistance.Calculated(
-                    Preferences.getLatitude(getContext()),
-                    Preferences.getCurentLatitude(getContext()),
-                    Preferences.getLongitude(getContext()),
-                    Preferences.getCurentLongitude(getContext()));
-
-            // if the distance exceeds 501.0, 501.0 is offset distance
-            if (hasil <= 501.0) {
-                if (timeAfterBeforeCheck(jam_pulang_mulai, jam_pulang_akhir, String.valueOf(nowTime))) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.berhasil_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                }
-            }
-            if (hasil >= 501.0) {
-                if (!timeAfterBeforeCheck(jam_pulang_mulai, jam_pulang_akhir, String.valueOf(nowTime))) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.jam_saat_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage(R.string.jarak_saat_absen)
-                            .setNegativeButton(R.string.oke, (dialogInterface, i) -> dialogInterface.dismiss()).show();
-                }
-            }
+            Toast.makeText(getContext(), "Mohon tunggu sebentar....",  Toast.LENGTH_LONG).show();
+            checkinfForAbsen(FotoSiswa.class, "pulang");
         });
         return root;
     }
@@ -304,6 +257,62 @@ public class DashboardSiswa extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private void checkinfForAbsen(Class cls, String jam) {
+
+        String jam_mulai = null;
+        String jam_akhir = null;
+
+        clock = jam;
+
+        // Sync location
+        updateLocation();
+        // Take now time
+        String nowTime = FunctionUtils.curentTime();
+        if (nowTime == null) {
+            FunctionUtils.dialogOnlyOK(getContext(), R.string.gangguan_jaringan);
+            return;
+        }
+        Log.d(TAG, nowTime);
+
+        // Calculated distance
+        double hasil = FunctionUtils.mapDistanceCalculated(
+                Preferences.getLatitude(getContext()),
+                Preferences.getCurentLatitude(getContext()),
+                Preferences.getLongitude(getContext()),
+                Preferences.getCurentLongitude(getContext()));
+
+        if (jam.equals("datang")) {
+            jam_mulai = jam_datang_mulai;
+            jam_akhir = jam_datang_akhir;
+        }
+
+        if (jam.equals("pulang")) {
+            jam_mulai = jam_pulang_mulai;
+            jam_akhir = jam_pulang_akhir;
+        }
+
+        // if the distance exceeds 501.0, 501.0 is offset distance
+        if (hasil <= 501.0) {
+            if (timeAfterBeforeCheck(jam_mulai, jam_akhir, nowTime)) {
+                FunctionUtils.enterActivity(getActivity(), cls);
+            } else {
+                FunctionUtils.dialogOnlyOK(getContext(), R.string.jam_saat_absen);
+            }
+        }
+
+        if (hasil >= 501.0) {
+            if (!timeAfterBeforeCheck(jam_mulai, jam_akhir, nowTime)) {
+                FunctionUtils.dialogOnlyOK(getContext(), R.string.jam_saat_absen);
+            } else {
+                FunctionUtils.dialogOnlyOK(getContext(), R.string.jarak_saat_absen);
+            }
+        }
+    }
+
+    public static String getJam() {
+        return clock;
     }
 
     private static FirebaseRemoteConfig getFirebaseRemoteConfig() {

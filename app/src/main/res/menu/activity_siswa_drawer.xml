@@ -10,7 +10,10 @@
             android:title="@string/menu_dashboard" />
     </group>
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single"
+        android:menuCategory="system"
+        android:id="@+id/group_system">
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_round_info"

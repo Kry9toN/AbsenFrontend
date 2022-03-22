@@ -75,4 +75,11 @@ dependencies {
 
     // Loading animation
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    // If you want to detect face contours (landmark detection and classification
+    // don't require this additional model):
+    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
+
+    implementation 'commons-net:commons-net:3.3'
 }

@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,26 +23,40 @@
         <activity
             android:name=".siswa.SiswaMainActivity"
             android:label="@string/title_activity_siswa"
-            android:theme="@style/Theme.AbsenMobile.NoActionBar" />
+            android:theme="@style/Theme.AbsenMobile.NoActionBar"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".guru.GuruMainActivity"
-            android:label="@string/title_activity_siswa"
-            android:theme="@style/Theme.AbsenMobile.NoActionBar" />
+            android:label="@string/title_activity_guru"
+            android:theme="@style/Theme.AbsenMobile.NoActionBar"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".siswa.foto.FotoSiswa"
+            android:label="@string/title_activity_siswa_foto"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".SplashScreeen"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="face" />
 
         <service
             android:name="krypton.absenmobile.util.security.IsolatedService"

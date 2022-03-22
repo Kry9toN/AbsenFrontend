@@ -19,6 +19,7 @@ import krypton.absenmobile.api.service.Interface;
 import krypton.absenmobile.guru.GuruMainActivity;
 import krypton.absenmobile.siswa.SiswaMainActivity;
 import krypton.absenmobile.storage.Preferences;
+import krypton.absenmobile.util.FunctionUtils;
 import krypton.absenmobile.util.loading.LoadingAnimation;
 import krypton.absenmobile.util.security.Permission;
 import okhttp3.MediaType;
@@ -145,6 +146,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
+                FunctionUtils.dialogOnlyOK(LoginActivity.this, R.string.gangguan_jaringan);
                 loadingAnimation.dismisDialog();
             }
         });
