@@ -55,9 +55,9 @@ public class IsolatedService extends Service {
                     isMagiskPresent = true;
                 }else {
                     /*Incase the java calls are hooked, there is 1 more level
-                    of check in the native to detect if the same blacklisted paths are
+                    of check in the cpp to detect if the same blacklisted paths are
                     found in the proc maps along with checks for su files when accessed
-                    from native.Native functions can also be hooked.But requires some effort
+                    from cpp.Native functions can also be hooked.But requires some effort
                     if it is properly obfuscated and syscalls are used in place of libc calls
                      */
                     isMagiskPresent = nativeRoot.isMagiskPresentNative();

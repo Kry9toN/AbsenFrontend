@@ -67,8 +67,6 @@ static inline bool is_mountpaths_detected() {
     bool bRet = false;
 
     FILE *fp = fopen("/proc/self/mounts", "r");
-    if (fp == NULL)
-        goto exit;
 
     fseek(fp, 0L, SEEK_END);
     long size = ftell(fp);
@@ -80,7 +78,7 @@ static inline bool is_mountpaths_detected() {
     if (buffer == NULL)
         goto exit;
 
-    size_t read = fread(buffer, 1, size, fp);
+    fread(buffer, 1, size, fp);
     int count = 0;
     for (int i = 0; i < len; i++) {
         __android_log_print(ANDROID_LOG_INFO, TAG, "Checking Mount Path  :%s", blacklistedMountPaths[i]);

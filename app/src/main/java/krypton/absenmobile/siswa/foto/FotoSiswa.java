@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.face.FirebaseVisionFace;
-import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.face.Face;
+import com.google.mlkit.vision.face.FaceDetection;
+import com.google.mlkit.vision.face.FaceDetector;
 
 import java.util.List;
 
@@ -28,14 +28,12 @@ import krypton.absenmobile.siswa.dashboard.DashboardSiswa;
 import krypton.absenmobile.util.security.Permission;
 
 public class FotoSiswa extends AppCompatActivity {
-    private static String TAG = "FotoSiswa";
+    private static final String TAG = "FotoSiswa";
 
-    private int CODE_CAMERA_REQ = 101;
+    private final int CODE_CAMERA_REQ = 101;
     private ImageView imageView;
     private CardView cardView;
     private Button btnSend;
-    private String jam;
-    private TextView textHeader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,9 +47,9 @@ public class FotoSiswa extends AppCompatActivity {
         imageView = findViewById(R.id.cameralocation);
         btnSend = findViewById(R.id.send);
         cardView = findViewById(R.id.card_button_send);
-        textHeader = findViewById(R.id.text_header_foto);
+        TextView textHeader = findViewById(R.id.text_header_foto);
 
-        jam = DashboardSiswa.getJam();
+        String jam = DashboardSiswa.getJam();
 
         if (jam.equals("datang")) {
             textHeader.setText(R.string.dialog_header_foto_datang);
@@ -64,6 +62,8 @@ public class FotoSiswa extends AppCompatActivity {
             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(camera, CODE_CAMERA_REQ);
         });
+        cardView.setVisibility(View.INVISIBLE);
+        btnSend.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -75,14 +75,13 @@ public class FotoSiswa extends AppCompatActivity {
 
             // Initial AI for detection Face
             Log.d(TAG, "Initial AI face detection");
-            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imageCapture);
-            FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
-                    .getVisionFaceDetector();
+            InputImage image = InputImage.fromBitmap(imageCapture, 0);
+            FaceDetector detector = FaceDetection.getClient();
 
             // Run detection Face
             Log.d(TAG, "Running face detection");
-            Task<List<FirebaseVisionFace>> result =
-                    detector.detectInImage(image)
+            Task<List<Face>> result =
+                    detector.process(image)
                             .addOnSuccessListener(
                                     faces -> {
                                         // Task completed successfully
@@ -95,6 +94,7 @@ public class FotoSiswa extends AppCompatActivity {
                                             // In btn clicked
                                             btnSend.setOnClickListener(v -> {
                                                 Toast.makeText(FotoSiswa.this, "Absen berhasil.....", Toast.LENGTH_SHORT).show();
+                                                finish();
                                             });
                                         } else {
                                             Toast.makeText(FotoSiswa.this, "Wajah tidak terdeteksi", Toast.LENGTH_SHORT).show();

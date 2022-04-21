@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AbsenMobile"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:extractNativeLibs="false" >
         <activity
             android:name=".siswa.SiswaMainActivity"
             android:label="@string/title_activity_siswa"
@@ -38,7 +39,8 @@
 
         <activity android:name=".SplashScreeen"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CustomSplashScreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -35,14 +35,14 @@
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/content_guru.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/content_siswa.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_about.xml" value="0.27445652173913043" />
-        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_dashboard_guru.xml" value="0.29322916666666665" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_dashboard_guru.xml" value="0.2" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_dashboard_siswa.xml" value="0.33" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_foto_activity.xml" value="0.1564207650273224" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/fragment_foto_datang.xml" value="0.25" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/loading_anim.xml" value="0.26132246376811596" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/nav_header_guru.xml" value="0.27445652173913043" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/nav_header_siswa.xml" value="0.27445652173913043" />
-        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/splashscreen.xml" value="0.27445652173913043" />
+        <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/layout/splashscreen.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/menu/activity_guru_drawer.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/menu/activity_siswa_drawer.xml" value="0.29322916666666665" />
         <entry key="..\:/AndroidStudio/absenmobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.309375" />
